@@ -1,40 +1,41 @@
-const listaAlumnos = []
-
+const listaAlumnos = [];
 
 const agregarAlumno = (nombre, edad) => {
-    listaAlumnos.push ({
+    listaAlumnos.push({
         nombre: nombre,
         edad: edad,
     });
 };
 
 const mostrarAlumnos = () => {
-
-    let lista = `     Lista de alumnos\n`;
-
-
-for(let i=0; i < listaAlumnos.length; i++) {
-    lista+=`
+    let lista = `\n----- Lista de alumnos -----\n`;
+    for (let i = 0; i < listaAlumnos.length; i++) {
+        lista += `
     - Nombre: ${listaAlumnos[i].nombre}
     - Edad: ${listaAlumnos[i].edad} años
-    ` 
-}
-
-return console.log(lista)   
+        `;
+    }
+    console.log(lista);
 };
 
-const nombre = prompt("ingresa nombre del alumno")
-const edadString = prompt("ingresa edad del alumno")
-const edad = parseInt(edadString)  
+let continuar = true;
 
-if (nombre && !isNaN(edad)) {
-    agregarAlumno(nombre, edad);
-    mostrarAlumnos();
-}else {
-    alert("datos invalidos")
+while (continuar) {
+    const nombre = prompt("Ingresa nombre del alumno");
+    const edadString = prompt("Ingresa edad del alumno");
+    const edad = parseInt(edadString);
+
+    if (nombre && !isNaN(edad)) {
+        agregarAlumno(nombre, edad);
+    } else {
+        alert("Datos inválidos");
+    }
+
+    
+    const respuesta = prompt("¿Querés agregar otro alumno? (si/no)").toLowerCase();
+    if (respuesta !== "si") {
+        continuar = false;
+    }
 }
 
-//agregarAlumno("Carlos", 34);
-//mostrarAlumnos() 
-
-
+mostrarAlumnos();
